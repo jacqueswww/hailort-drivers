@@ -19,6 +19,11 @@
 #include <linux/dma-mapping.h>
 #endif
 
+#include <linux/version.h>
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 15, 0)
+#define del_timer_sync timer_delete_sync
+#endif
+
 
 static struct hailo_vdma_engine* init_vdma_engines(struct device *dev,
     struct hailo_resource *channel_registers_per_engine, size_t engines_count, u64 src_channels_bitmask,
